@@ -24,8 +24,8 @@ export function Intro() {
             </IntroTitle>
 
             <RegularText size="l" color="subtitle" as="h3">
-              Com o Coffe Delivery você recebe seu café onde estivere, a
-              qualquer hora
+              Com o Coffe Delivery você recebe seu café onde estiver, a qualquer
+              hora
             </RegularText>
           </section>
 
