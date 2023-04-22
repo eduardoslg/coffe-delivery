@@ -7,6 +7,7 @@ export const SelectedCoffeesContainer = styled.div`
   flex-direction: column;
   gap: 0.75rem;
   width: 40rem;
+  overflow: auto;
 `
 
 export const DetailsContainer = styled(SectionBaseStyle)`

@@ -1,10 +1,10 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 
 import { ShoppingCart } from 'phosphor-react'
 
 import { QuantityInput } from '../../../../components/QuantityInput'
 import { RegularText, TitleText } from '../../../../components/Typograph'
-// import { useCart } from '../../../../hooks/useCart'
+import { useCart } from '../../../../hooks/useCart'
 import { formatMoney } from '../../../../utils/formatMoney'
 import {
   CoffeeCardContainer,
@@ -29,25 +29,28 @@ interface CoffeeProps {
 }
 
 export function CoffeeCard({ coffee }: CoffeeProps) {
-  // const [quantity, setQuantity] = useState(1)
+  const { addCoffeeToCart } = useCart()
 
-  // function handleIncrease() {
-  //   setQuantity((state) => state + 1)
-  // }
+  const [quantity, setQuantity] = useState(1)
 
-  // function handleDecrease() {
-  //   setQuantity((state) => state - 1)
-  // }
+  function handleIncrease() {
+    setQuantity((state) => state + 1)
+  }
 
-  // const { addCoffeeToCart } = useCart()
+  function handleDecrease() {
+    setQuantity((state) => state - 1)
+  }
 
-  // function handleAddToCart() {
-  //   const coffeeToAdd = {
-  //     ...coffee,
-  //     quantity,
-  //   }
-  //   addCoffeeToCart(coffeeToAdd)
-  // }
+  function handleAddToCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    }
+
+    addCoffeeToCart(coffeeToAdd)
+
+    setQuantity(1)
+  }
 
   const formattedPrice = formatMoney(coffee.price)
 
@@ -73,15 +76,12 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
 
         <AddCartWrapper>
           <QuantityInput
-            onDecrease={() => undefined}
-            onIncrease={() => undefined}
-            quantity={1}
-
-            // onIncrease={handleIncrease}
-            // onDecrease={handleDecrease}
-            // quantity={quantity}
+            onIncrease={handleIncrease}
+            onDecrease={handleDecrease}
+            quantity={quantity}
           />
-          <button>
+
+          <button onClick={handleAddToCart}>
             <ShoppingCart weight="fill" size={22} />
           </button>
         </AddCartWrapper>
